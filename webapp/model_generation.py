@@ -11,6 +11,7 @@ The code sequence is as follows:
 import tensorflow as tf
 from tensorflow import keras
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 import matplotlib.pyplot as plt
@@ -113,17 +114,22 @@ opt = keras.optimizers.Adam(lr=0.0001)
 # 2. Establishes the accuracy metric which is the metric evaluated and reported during training
 model.compile(optimizer= opt ,loss='binary_crossentropy',metrics=['acc'])
 
+# Define Callback Function
+# The following code defines a callback function executed at the end of each epoch during the training of the model
 class ModelCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
+        # checks if the validation loss is less than 0.1
         if(logs.get('val_loss')<0.1):
-            print("\nReached 0.1 val_loss so cancelling training!")
+            print("\nReached 0.1 val_loss! Halting training!")
             self.model.stop_training = True
 
 callback = ModelCallback()
 
+# Trains the model using the following parameters
+# 1. 10 Epochs (number of times the training data should be iterated during training)
+# 2. 256 Batch Size (the number of samples used in each epoch for updating model parameters). Batches optimize memory training and speed training
+# 3. Verbosity of 1 (progress info will be displayed after each epoch which contains loss and accuracy data)
 history = model.fit(x_train, y_train, epochs=10,batch_size=256, callbacks=[callback],validation_data=(x_test,y_test),verbose=1)
-
-# OPTIONAL VISUALIZATIONS
 
 # list all data in history
 print(history.history.keys())
@@ -145,10 +151,10 @@ def view_result(array):
         else:
             print("Mallicious")
 
-print("PREDICTED : ")
+print("PREDICTED RESULTS: ")
 view_result(pred_test[:10])
 print("\n")
-print("ACTUAL : ")
+print("ACTUAL RESULTS: ")
 view_result(y_test[:10])
 
 # SAVE MODEL
