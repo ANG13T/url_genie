@@ -4,9 +4,17 @@ Created by Angelina Tsuboi (angelinatsuboi.com)
 
 Objective:
 This script was created with the goal of making a Multilayer Perceptron Neural Network model with optimized hyper-parameters using genetic algorithms.
+
 The code sequence is as follows:
-1. Integrate CSV Dataset
-2. 
+1. Integrate CSV Dataset and Remove Unecessary Columns
+2. Use SMOTE to Balance out Class Distribution in Dataset
+3. Split Dataset into Training and Testing Sets using 80:20 Ratio
+4. Initialize Multilayer Perception
+5. Utilize Adam Optimization and Binary Cross Entropy Loss Function
+6. Initialize Model Callback to Wait Until 0.1 Validation Loss 
+7. Train Model with 10 Epochs and Batch Size of 256
+8. Verify Model Results using 10 Examples
+9. Save the Model into a .h5 File Output
 '''
 import tensorflow as tf
 from tensorflow import keras
