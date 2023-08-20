@@ -1,10 +1,8 @@
 import streamlit as st
-import tensorflow as tf
 from tensorflow import keras
 
-@st.cache(allow_output_mutation=True)
 def load_model():
-    model=tf.keras.models.load_model('Malicious_URL_Prediction.h5')
+    model=keras.models.load_model('Malicious_URL_Prediction.h5')
     return model
 with st.spinner("Loading Model...."):
     model=load_model()
@@ -27,9 +25,13 @@ st.markdown("<p style='text-align: center; color: #494848;'>This program utilize
 def predict(val):
     st.write("Predicting Class...")
     with st.spinner("Classifying..."):
-        pred_test = model.predict(val)
-        st.write(pred_test)
+        # pred_test = model.predict(val)
+        # st.write(pred_test)
+        print(value)
 
 
 value = st.text_input("Enter URL to scan", "https://google.com")
-submit = st.button("Classify URL", on_click=predict(value))
+submit = st.button("Classify URL")
+
+if submit:
+    predict(value)

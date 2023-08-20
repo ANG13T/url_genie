@@ -3,7 +3,7 @@ Malicious Domain Detection Model Generation Python Script
 Created by Angelina Tsuboi (angelinatsuboi.com)
 
 Objective:
-This script was created with the goal of making a Multilayer Perceptron Neural Network model with optimized hyper-parameters using genetic algorithms.
+This script was created with the goal of making a Multilayer Perceptron Neural Network
 
 The code sequence is as follows:
 1. Integrate CSV Dataset and Remove Unecessary Columns
@@ -155,9 +155,9 @@ def view_result(array):
     array = np.array(array)
     for i in range(len(array)):
         if array[i] == 0:
-            print("Non Mallicious")
+            print("Safe")
         else:
-            print("Mallicious")
+            print("Malicious")
 
 print("PREDICTED RESULTS: ")
 view_result(pred_test[:10])
