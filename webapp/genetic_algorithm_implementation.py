@@ -14,7 +14,10 @@ The code sequence is as follows:
 6. Initialize Model Callback to Wait Until 0.1 Validation Loss 
 7. Train Model with 10 Epochs and Batch Size of 256
 8. Verify Model Results using 10 Examples
-9. Save the Model into a .h5 File Output
+9. Run Each Model Iteration through a Genetic Algorithm
+10. Evaluate Fitness of Each Model by Referencing Accuracy
+11. Determine Best Model within Population
+12. Save the Best Model into a .h5 File Output
 '''
 
 import numpy as np
