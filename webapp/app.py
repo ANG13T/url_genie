@@ -87,22 +87,22 @@ def extract_features(url):
     return features
 
 def predict(val):
-    st.write("Predicting Class...")
+    st.write(f'Classifying URL: {val}')
     with st.spinner("Classifying..."):
         input = extract_features(val)
         print(input.shape)
         for item in input:
             print(type(item))
         pred_test = model.predict(input)
+        percentage_value = pred_test[0][0] * 100
         if (pred_test[0] < 0.5):
-            st.write("SAFE")
-        else:
-            st.write("MALICOUS")
-        st.write(pred_test)
+            st.write(f'<span style="color:green;">✅ **SAFE with {percentage_value:.2f}% malicious confidence**</span>', unsafe_allow_html=True)
+        else: 
+            st.write(f'<span style="color:red;">⛔️ **MALICOUS with {percentage_value:.2f}% malicious confidence**</span>', unsafe_allow_html=True)
         print(input, pred_test)
 
 
-value = st.text_input("Enter URL to scan", "https://google.com")
+value = st.text_input("Enter URL to scan", "https://www.google.com")
 submit = st.button("Classify URL")
 
 if submit:
